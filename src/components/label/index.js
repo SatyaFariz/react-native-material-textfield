@@ -47,6 +47,7 @@ export default class Label extends PureComponent {
   }
 
   componentWillReceiveProps(props) {
+    let useNativeDriver = true;
     let { focus, input } = this.state;
     let { active, focused, errored, animationDuration: duration } = this.props;
 
@@ -54,7 +55,7 @@ export default class Label extends PureComponent {
       let toValue = this.inputState(props);
 
       Animated
-        .timing(input, { toValue, duration })
+        .timing(input, { toValue, duration, useNativeDriver })
         .start();
     }
 
@@ -62,7 +63,7 @@ export default class Label extends PureComponent {
       let toValue = this.focusState(props);
 
       Animated
-        .timing(focus, { toValue, duration })
+        .timing(focus, { toValue, duration, useNativeDriver })
         .start();
     }
   }
